@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nojima's Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- 変数定義 --- */
+        :root {
+            /* ライトモードの配色 */
+            --bg-color: #f4f7f9;
+            --text-color: #333;
+            --card-bg-color: #ffffff;
+            --accent-color: #007aff;
+            --header-bg-color: #ffffff;
+            --shadow-color: rgba(0, 0, 0, 0.08);
+        }
+
+        /* ダークモードの配色 */
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --card-bg-color: #1e1e1e;
+            --accent-color: #0a84ff;
+            --header-bg-color: #1e1e1e;
+            --shadow-color: rgba(0, 0, 0, 0.4);
+        }
+
+        /* --- 基本スタイル --- */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            line-height: 1.7;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* --- ヘッダー --- */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: var(--header-bg-color);
+            box-shadow: 0 2px 10px var(--shadow-color);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            transition: background-color 0.3s;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .theme-switcher {
+            cursor: pointer;
+            font-size: 1.5rem;
+            user-select: none; /* テキスト選択を無効に */
+        }
+        
+        /* --- ヒーローセクション --- */
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin: 0 0 10px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            opacity: 0.8;
+        }
+
+        /* --- セクション & カード --- */
+        .section {
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent-color);
+            margin: 8px auto 0;
+        }
+        
+        .card {
+            background-color: var(--card-bg-color);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px var(--shadow-color);
+            margin-bottom: 20px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* --- プロフィールセクション --- */
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .profile-pic {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%; /* 丸い画像 */
+            object-fit: cover;
+        }
+        
+        .profile-info b {
+            color: var(--accent-color);
+        }
+
+        /* --- 更新履歴セクション --- */
+        .update-log ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .update-log li {
+            display: flex;
+            align-items: baseline;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+        }
+        .update-log li:last-child {
+            border-bottom: none;
+        }
+        
+        .update-log .date {
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-right: 20px;
+            white-space: nowrap;
+        }
+        
+        /* --- フッター --- */
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* --- レスポンシブ対応 (スマホ用) --- */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .profile {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <a href="#" class="logo">NOJIMA</a>
+        <div class="theme-switcher" id="theme-switcher" title="テーマを切り替え">🌙</div>
+    </header>
+    
+    <div class="container">
+        <section class="hero">
+            <h1>Welcome to my Page!</h1>
+            <p>野嶋の活動や趣味を発信するパーソナルページです。</p>
+        </section>
+
+        <main>
+            <section id="profile" class="section">
+                <h2 class="section-title">Profile</h2>
+                <div class="card profile">
+                    <img src="https://via.placeholder.com/120" alt="プロフィール画像" class="profile-pic">
+                    <div class="profile-info">
+                        <h3>野嶋 (Nojima)</h3>
+                        <p>
+                            <b>Handle:</b> のじ<br>
+                            <b>Hobby:</b> PCビルド、Linuxカスタマイズ、週末DIY<br>
+                            <b>Message:</b> インターネットの片隅で、好きなことを好きなだけ。有益な情報はありませんが、どうぞごゆっくり。
+                        </p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="updates" class="section">
+                <h2 class="section-title">Updates</h2>
+                <div class="card update-log">
+                    <ul>
+                        <li><span class="date">2025.10.17</span> サイトをモダンなデザインにリニューアル！</li>
+                        <li><span class="date">2025.08.20</span> 趣味のページに「Ubuntu環境構築」の記事を追加しました。</li>
+                        <li><span class="date">2025.04.01</span> ポートフォリオサイトとして公開しました。</li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 Nojima. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const switcher = document.getElementById('theme-switcher');
+            const html = document.documentElement;
+
+            // 1. ローカルストレージからテーマを読み込む
+            const currentTheme = localStorage.getItem('theme');
+            if (currentTheme === 'dark') {
+                html.setAttribute('data-theme', 'dark');
+                switcher.textContent = '☀️';
+            } else {
+                html.setAttribute('data-theme', 'light');
+                switcher.textContent = '🌙';
+            }
+
+            // 2. スイッチクリック時の処理
+            switcher.addEventListener('click', () => {
+                if (html.getAttribute('data-theme') === 'dark') {
+                    // ライトモードへ
+                    html.setAttribute('data-theme', 'light');
+                    switcher.textContent = '🌙';
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    // ダークモードへ
+                    html.setAttribute('data-theme', 'dark');
+                    switcher.textContent = '☀️';
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
